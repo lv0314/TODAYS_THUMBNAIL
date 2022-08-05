@@ -68,9 +68,10 @@ function FinishButton() {
 
 const copyPreview = async () => {
   let url = '';
-  const preview = await html2canvas(document.getElementsByClassName('preview')[0] as HTMLElement);
-  url = preview.toDataURL();
-  console.log(url);
+  const preview = await html2canvas(document.getElementsByClassName('preview')[0] as HTMLElement, {
+    useCORS: true,
+  });
+  url = preview.toDataURL('image/png');
 
   return url;
 };

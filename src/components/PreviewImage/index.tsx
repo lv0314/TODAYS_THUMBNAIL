@@ -17,7 +17,7 @@ export function PreviewImage() {
     <S.Container onClick={onClickContainer}>
       <S.PreviewContainer>
         <Text text="Here is your thumbnail 😎" fontWeight="bold" fontSize="previewPageH2" color="white" />
-        <S.PreviewImageFigure>
+        <S.PreviewImageFigure id="previewFigure">
           <img src={url} alt="thumbnail" />
         </S.PreviewImageFigure>
       </S.PreviewContainer>
