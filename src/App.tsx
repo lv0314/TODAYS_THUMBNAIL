@@ -1,26 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Container } from './components/Container';
+import { ThemeProvider } from 'styled-components';
+import { theme } from './styles/theme';
+import { GlobalStyle } from './styles/GlobalStyle';
+import { Window } from './components/Window';
+import { RecoilRoot } from 'recoil';
+import { PreviewImage } from './components/PreviewImage';
 
-function App() {
+export function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <RecoilRoot>
+        <Container>
+          <Window />
+        </Container>
+        <PreviewImage />
+      </RecoilRoot>
+    </ThemeProvider>
   );
 }
-
-export default App;
