@@ -7,10 +7,12 @@ import * as S from './style';
 export function PreviewImage() {
   const [save, setSave] = useRecoilState(saveState);
   const url = useRecoilValue(urlState);
+
   const onClickContainer = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     setSave(false);
   };
+
   return save ? (
     <S.Container onClick={onClickContainer}>
       <S.PreviewContainer>
