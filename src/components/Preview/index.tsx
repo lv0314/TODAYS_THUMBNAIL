@@ -39,7 +39,7 @@ function PreviewSubTitle() {
 
   return (
     <S.PreviewTextContainer>
-      {(thumbnailTypeValue === 1 || thumbnailTypeValue === 2) && (
+      {thumbnailTypeValue === 1 && (
         <PreviewText fontSize={textSizeValue ? 'previewBaseBigger' : 'previewBase'} text={subTitleValue} />
       )}
     </S.PreviewTextContainer>
@@ -54,7 +54,7 @@ function PreviewFooter() {
   return (
     <S.PreviewTextContainer>
       <S.PreviewFooter>
-        {thumbnailTypeValue === 1 && (
+        {(thumbnailTypeValue === 1 || thumbnailTypeValue === 2) && (
           <PreviewText fontSize={textSizeValue ? 'previewBaseBigger' : 'previewBase'} text={footerValue} />
         )}
       </S.PreviewFooter>
