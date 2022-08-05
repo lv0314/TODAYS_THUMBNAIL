@@ -9,7 +9,7 @@ export function PreviewImage() {
   const url = useRecoilValue(urlState);
 
   const onClickContainer = (e: React.MouseEvent<HTMLElement>) => {
-    e.stopPropagation();
+    e.preventDefault();
     setSave(false);
   };
 
