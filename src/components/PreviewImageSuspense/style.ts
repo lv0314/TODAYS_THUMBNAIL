@@ -41,6 +41,7 @@ export const PreviewContainer = styled.section`
 export const PreviewImageFigure = styled.figure`
   width: 768px;
   height: 402px;
+  background-color: lightslategray;
   border: 1px solid lightgray;
 `;
 

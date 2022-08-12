@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Container } from './components/Container';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './styles/theme';
@@ -6,6 +6,7 @@ import { GlobalStyle } from './styles/GlobalStyle';
 import { Window } from './components/Window';
 import { RecoilRoot } from 'recoil';
 import { PreviewImage } from './components/PreviewImage';
+import { PreviewImageSuspense } from './components/PreviewImageSuspense';
 
 export function App() {
   return (
@@ -15,7 +16,9 @@ export function App() {
         <Container>
           <Window />
         </Container>
-        <PreviewImage />
+        <Suspense fallback={<PreviewImageSuspense />}>
+          <PreviewImage />
+        </Suspense>
       </RecoilRoot>
     </ThemeProvider>
   );

@@ -3,30 +3,30 @@ import { useRecoilState } from 'recoil';
 import {
   backgroundColorState,
   backgroundLineState,
+  footerVisibleState,
+  mainTitleVisibleState,
+  subTitleVisibleState,
   textColorState,
   textShadowState,
   textSizeState,
-  thumbnailLineState,
-  thumbnailTypeState,
 } from '../../recoil/atoms';
 import { getRandomHex } from '../../utils/util';
 import { Text } from '../Common/Text';
 import * as S from './style';
 
 export function ThumbnailTypeLine() {
-  const [thumbnailType, setThumbnailType] = useRecoilState(thumbnailTypeState);
-  const [selected, setSelected] = useRecoilState(thumbnailLineState);
+  const [mainTitleVisible, setMainTitleVisible] = useRecoilState(mainTitleVisibleState);
+  const [subTitleVisible, setsubTitleVisible] = useRecoilState(subTitleVisibleState);
+  const [footerVisible, setFooterVisible] = useRecoilState(footerVisibleState);
+
   const onClickType1 = () => {
-    setThumbnailType(1);
-    setSelected(1);
+    setMainTitleVisible(!mainTitleVisible);
   };
   const onClickType2 = () => {
-    setThumbnailType(2);
-    setSelected(2);
+    setsubTitleVisible(!subTitleVisible);
   };
   const onClickType3 = () => {
-    setThumbnailType(3);
-    setSelected(3);
+    setFooterVisible(!footerVisible);
   };
 
   return (
@@ -35,20 +35,20 @@ export function ThumbnailTypeLine() {
         <Text text="썸네일 구성 요소" color="gray" fontWeight="bold" />
       </S.TextContainer>
       <S.ControlButtonContainer>
-        {selected === 1 ? (
-          <S.SelectedControlButton onClick={onClickType1}>main / sub / footer</S.SelectedControlButton>
+        {mainTitleVisible ? (
+          <S.SelectedControlButton onClick={onClickType1}>Main Title</S.SelectedControlButton>
         ) : (
-          <S.ControlButton onClick={onClickType1}>main / sub / footer</S.ControlButton>
+          <S.ControlButton onClick={onClickType1}>Main Title</S.ControlButton>
         )}
-        {selected === 2 ? (
-          <S.SelectedControlButton onClick={onClickType2}>main / footer</S.SelectedControlButton>
+        {subTitleVisible ? (
+          <S.SelectedControlButton onClick={onClickType2}>Sub Title</S.SelectedControlButton>
         ) : (
-          <S.ControlButton onClick={onClickType2}>main / footer</S.ControlButton>
+          <S.ControlButton onClick={onClickType2}>Sub Title</S.ControlButton>
         )}
-        {selected === 3 ? (
-          <S.SelectedControlButton onClick={onClickType3}>main</S.SelectedControlButton>
+        {footerVisible ? (
+          <S.SelectedControlButton onClick={onClickType3}>Footer</S.SelectedControlButton>
         ) : (
-          <S.ControlButton onClick={onClickType3}>main</S.ControlButton>
+          <S.ControlButton onClick={onClickType3}>Footer</S.ControlButton>
         )}
       </S.ControlButtonContainer>
     </S.ControlPanelLineContainer>

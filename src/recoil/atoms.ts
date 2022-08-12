@@ -20,9 +20,19 @@ export const backgroundColorState = atom({
   default: '#6cc57b',
 });
 
-export const thumbnailTypeState = atom({
-  key: 'thumbnailType',
-  default: 1,
+export const mainTitleVisibleState = atom({
+  key: 'mainTitleVisibleState',
+  default: true,
+});
+
+export const subTitleVisibleState = atom({
+  key: 'subTitleVisibleState',
+  default: true,
+});
+
+export const footerVisibleState = atom({
+  key: 'footerVisibleState',
+  default: true,
 });
 
 export const textShadowState = atom({
@@ -62,5 +72,10 @@ export const saveState = atom({
 
 export const urlState = atom({
   key: 'url',
+  default: '',
+});
+
+export const hostedUrlState = atom({
+  key: 'hostedUrl',
   default: '',
 });
