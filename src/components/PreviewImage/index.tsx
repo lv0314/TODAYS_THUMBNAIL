@@ -10,9 +10,11 @@ export function PreviewImage() {
   const url = useRecoilValue(urlState);
   const hostedUrl = useRecoilValue(hostedUrlState);
 
-  const onClickModalOff = () => setSave(false);
-  const onCopy = () => {
-    copyToClipboard(hostedUrl);
+  const onClickModalOff = (e: React.MouseEvent<HTMLDivElement>) => {
+    setSave(false);
+  };
+  const onCopy = (e: React.MouseEvent<HTMLDivElement>) => {
+    copyToClipboard(e.currentTarget.innerText);
     alert('copied on your clipboard');
   };
 
@@ -31,8 +33,9 @@ export function PreviewImage() {
           <img src={url} alt="thumbnail" />
         </S.PreviewImageFigure>
         <S.HostedUrlContainer onClick={onCopy}>
-          <Text text={`${hostedUrl} (click to copy)`} fontWeight="bold" fontSize="previewPageH2" color="white"></Text>
+          <Text text={hostedUrl} fontWeight="bold" fontSize="previewPageH2" color="white"></Text>
         </S.HostedUrlContainer>
+        <Text text="⬆️ CLICK TO COPY ⬆️" fontWeight="bold" fontSize="previewBase" color="white"></Text>
       </S.PreviewContainer>
     </S.Container>
   ) : (

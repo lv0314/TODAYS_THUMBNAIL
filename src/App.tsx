@@ -16,9 +16,9 @@ export function App() {
         <Container>
           <Window />
         </Container>
-        <Suspense fallback={<PreviewImageSuspense />}>
+        <React.Suspense fallback={<PreviewImageSuspense />}>
           <PreviewImage />
-        </Suspense>
+        </React.Suspense>
       </RecoilRoot>
     </ThemeProvider>
   );

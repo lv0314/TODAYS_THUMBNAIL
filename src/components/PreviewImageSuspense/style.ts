@@ -6,7 +6,7 @@ export const Container = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 100;
+  z-index: 150;
   background-color: rgba(0, 0, 0, 0.7);
 `;
 export const FirstLine = styled.div`

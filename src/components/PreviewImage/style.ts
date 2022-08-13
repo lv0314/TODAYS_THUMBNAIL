@@ -46,4 +46,6 @@ export const PreviewImageFigure = styled.figure`
 
 export const HostedUrlContainer = styled.div`
   cursor: pointer;
+  display: flex;
+  gap: 10px;
 `;
