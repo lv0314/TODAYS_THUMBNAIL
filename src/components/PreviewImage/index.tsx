@@ -4,6 +4,7 @@ import { hostedUrlState, saveState } from '../../recoil/atoms';
 import { Text } from '../Common/Text';
 import * as S from './style';
 import X_ICON from '../../assets/icons/x.svg';
+import CopyToClipboard from 'react-copy-to-clipboard';
 
 export function PreviewImage() {
   const [save, setSave] = useRecoilState(saveState);
@@ -11,10 +12,6 @@ export function PreviewImage() {
 
   const onClickModalOff = (e: React.MouseEvent<HTMLDivElement>) => {
     setSave(false);
-  };
-  const onCopy = (e: React.MouseEvent<HTMLDivElement>) => {
-    copyToClipboard(e.currentTarget.innerText);
-    alert('copied on your clipboard');
   };
 
   return save ? (
@@ -33,34 +30,15 @@ export function PreviewImage() {
             <img src={hostedUrl} alt="thumbnail" />
           </S.PreviewImageFigure>
         </Suspense>
-        <S.HostedUrlContainer onClick={onCopy}>
-          <Text text={hostedUrl} fontWeight="bold" fontSize="previewPageH2" color="white"></Text>
-        </S.HostedUrlContainer>
+        <CopyToClipboard text={hostedUrl} onCopy={() => alert('copied on your clipboard')}>
+          <S.HostedUrlContainer>
+            <Text text={hostedUrl} fontWeight="bold" fontSize="previewPageH2" color="white"></Text>
+          </S.HostedUrlContainer>
+        </CopyToClipboard>
         <Text text="⬆️ CLICK TO COPY ⬆️" fontWeight="bold" fontSize="previewBase" color="white"></Text>
       </S.PreviewContainer>
     </S.Container>
   ) : (
     <></>
   );
-}
-
-function unsecuredCopyToClipboard(text: string) {
-  const textArea = document.createElement('textarea');
-  textArea.value = text;
-  document.body.appendChild(textArea);
-  textArea.select();
-  try {
-    document.execCommand('copy');
-  } catch (err) {
-    console.error('Unable to copy to clipboard', err);
-  }
-  document.body.removeChild(textArea);
-}
-
-function copyToClipboard(content: string) {
-  if (window.isSecureContext && navigator.clipboard) {
-    navigator.clipboard.writeText(content);
-  } else {
-    unsecuredCopyToClipboard(content);
-  }
 }
