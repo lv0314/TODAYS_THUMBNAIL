@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { hostedUrlState, saveState, urlState } from '../../recoil/atoms';
+import { hostedUrlState, saveState } from '../../recoil/atoms';
 import { Text } from '../Common/Text';
 import * as S from './style';
 import X_ICON from '../../assets/icons/x.svg';
 
 export function PreviewImage() {
   const [save, setSave] = useRecoilState(saveState);
-  const url = useRecoilValue(urlState);
   const hostedUrl = useRecoilValue(hostedUrlState);
 
   const onClickModalOff = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -29,9 +28,11 @@ export function PreviewImage() {
             <img src={X_ICON} />
           </S.IconContainer>
         </S.FirstLine>
-        <S.PreviewImageFigure id="previewFigure">
-          <img src={url} alt="thumbnail" />
-        </S.PreviewImageFigure>
+        <Suspense fallback={<div>test</div>}>
+          <S.PreviewImageFigure id="previewFigure">
+            <img src={hostedUrl} alt="thumbnail" />
+          </S.PreviewImageFigure>
+        </Suspense>
         <S.HostedUrlContainer onClick={onCopy}>
           <Text text={hostedUrl} fontWeight="bold" fontSize="previewPageH2" color="white"></Text>
         </S.HostedUrlContainer>
@@ -47,7 +48,6 @@ function unsecuredCopyToClipboard(text: string) {
   const textArea = document.createElement('textarea');
   textArea.value = text;
   document.body.appendChild(textArea);
-  textArea.focus();
   textArea.select();
   try {
     document.execCommand('copy');

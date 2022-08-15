@@ -70,11 +70,6 @@ export const saveState = atom({
   default: false,
 });
 
-export const urlState = atom({
-  key: 'url',
-  default: '',
-});
-
 export const hostedUrlState = atom({
   key: 'hostedUrl',
   default: '',

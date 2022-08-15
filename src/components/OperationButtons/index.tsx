@@ -15,7 +15,6 @@ import {
   textShadowState,
   textSizeState,
   thumbnailLineState,
-  urlState,
 } from '../../recoil/atoms';
 import * as S from './style';
 import html2canvas from 'html2canvas';
@@ -66,14 +65,13 @@ function ResetButton() {
 
 function FinishButton() {
   const [save, setSave] = useRecoilState(saveState);
-  const [url, setUrl] = useRecoilState(urlState);
   const [hostedUrl, setHostedUrl] = useRecoilState(hostedUrlState);
 
   const onClickFinButton = async () => {
     const copiedUrl = await copyPreview();
-    setSave(true);
-    setUrl(copiedUrl);
+    // setUrl(copiedUrl);
     setHostedUrl(copiedUrl);
+    setSave(true);
   };
   return <S.FinButton onClick={onClickFinButton}>완료</S.FinButton>;
 }

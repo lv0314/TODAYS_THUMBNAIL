@@ -15,7 +15,7 @@ export function PreviewImageSuspense() {
             <img src={X_ICON} />
           </S.IconContainer>
         </S.FirstLine>
-        <S.PreviewImageFigure></S.PreviewImageFigure>
+        <S.PreviewImageFigure />
       </S.PreviewContainer>
     </S.Container>
   );
